@@ -21,4 +21,6 @@ class Order(models.Model):
                              related_name='order_user', on_delete=models.CASCADE
                              )
     cart_item = models.ForeignKey(verbose_name='Carrinho', to=CartItem,
-                                  related_name='order_item', on_delete=models.CASCADE)
+                                  related_name='order_item', on_delete=models.CASCADE
+                                  )
+    created_date = models.DateField(verbose_name='Data de criação', default=tz.now)
