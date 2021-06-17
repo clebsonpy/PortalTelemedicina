@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 from .models import Product, Order
-from .serializers import ProductSerializer, OrderSerializer, OrderSerializerSearch
+from .serializers import ProductSerializer, OrderSerializer
 
 
 # Create your views here.
