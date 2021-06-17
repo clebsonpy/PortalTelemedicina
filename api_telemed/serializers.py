@@ -12,17 +12,19 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartItemSerializer(serializers.ModelSerializer):
 
-    product = ProductSerializer(many=False)
+    # product = ProductSerializer(many=False)
 
     class Meta:
         model = CartItem
-        fields = '__all__'
+        exclude = ['order']
+        extra_fields = {'id': {'read_only': True}}
 
 
 class OrderSerializer(WritableNestedModelSerializer):
 
-    cart_item = CartItemSerializer(many=True)
+    cart_item = CartItemSerializer(many=True, source='cart_order')
 
     class Meta:
         model = Order
-        fields = ['user', 'cart_item']
+        fields = ['user', 'created_date', 'cart_item']
+        extra_fields = {'created_date': {'read_only': True}}
